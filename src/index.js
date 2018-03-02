@@ -2,9 +2,24 @@ module.exports = function check(str, bracketsConfig) {
   // your solution
   let arr  = str.split(''),
   sum = 0,
-  st = [];
-  console.log(arr);
+  st = [],
+  prom = [];
   
+  for(let j = 0; j < arr.length; j++) {
+    if (arr[j] == '|' || arr[j] == '7' || arr[j] == '8') {
+        prom.push(arr[j]);
+        for(let p = 0; p < prom.length; p++) {
+            if(p % 2 != 0) {
+                prom[p] = ')';
+                arr[j] = prom[p];
+            } else {
+                prom[p] = '(';
+                arr[j] = prom[p];
+            }
+        }
+ }
+    
+} 
 for (let i in arr) {
   if (arr[i] == '(' || arr[i] == '[' || arr[i] == '{' || arr[i] == '1' || arr[i] == '3' || arr[i] == '5') {
       st.push(arr[i]);
@@ -34,12 +49,7 @@ for (let i in arr) {
           return false;
       }
   }
-
 }
-var reg = /||/g;
-  if (arr == reg) {
-    return true;
-  }
 
 return !st.length;
 }
